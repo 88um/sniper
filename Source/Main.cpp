@@ -10,7 +10,7 @@ void successMessage(const std::string& target) {
     int len = MultiByteToWideChar(CP_UTF8, 0, text.c_str(), -1, NULL, 0);
     std::vector<wchar_t> buffer(len);
     MultiByteToWideChar(CP_UTF8, 0, text.c_str(), -1, buffer.data(), len);
-    MessageBox(NULL, buffer.data(), TEXT("New Slimy Claim!!"), MB_ICONINFORMATION | MB_OK);
+    MessageBox(NULL, buffer.data(), TEXT("New Slimy Claim!! Follow @ulzi on IG for more!"), MB_ICONINFORMATION | MB_OK);
 }
 
 
@@ -40,7 +40,7 @@ void claim() {
             ig.claimUser(target);
             if (!ig.isClaimed()) {
                 std::lock_guard<std::mutex> lock(print_lock);
-                std::cout << redText("[-] Failed to claim user: " + target + " | Response: " + std::to_string(ig.lastCode())) << "\n";
+                std::cout << redText("[-] Failed to claim user: " + target + " | Response: " + std::to_string(ig.lastCode())) << "\n"; 
             }
             else {
                 std::lock_guard<std::mutex> lock(print_lock);
@@ -58,7 +58,7 @@ void claim() {
             std::lock_guard<std::mutex> lock(print_lock);
             if (errorMessages.find(e.what()) == errorMessages.end()) {
                 errorMessages.insert(e.what());
-                std::cout << e.what();
+                //std::cout << e.what();
 
             }   
             break;
@@ -107,6 +107,9 @@ void claimer() {
             std::cout << "[+] Enter the number of threads to create: ";
             std::cin >> num_threads;
             start(num_threads, target, ig);
+            for (const auto& element : errorMessages) {
+                std::cout << element << "\n";
+            }
         }
         catch (std::exception& e) { std::cout << e.what(); }
     }
@@ -115,7 +118,7 @@ void claimer() {
             std::cout << yellowText("[+] Enter Your Username: ");
             std::cin >> username;
             std::cout << yellowText("[+] Enter Your Password: ");
-            std::cin >> password;
+            password = mask_pass();
 
             ig.login(username, password);
             if (!ig.profileInfo()) { throw LoginException("[!] Failed to gather account info | Response: " + std::to_string(ig.lastCode())); }
@@ -146,6 +149,8 @@ void claimer() {
 
     }
 }
+
+
 
 
 
