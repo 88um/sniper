@@ -81,12 +81,15 @@ void track_requests() {
 std::string get_user() {
     std::lock_guard<std::mutex> lockGuard(users_lock);
     if (users.empty()) {
+        std::cout << "empty";
         std::queue<std::string> userz;
         userz = queue_file("users.txt");
         users = std::queue<std::string>();
         users = userz;
     }
-    return (users.front());
+    std::string user = users.front();
+    users.pop();
+    return (user);
 }
 
 std::string get_session() {
@@ -97,7 +100,9 @@ std::string get_session() {
         sessions = std::queue<std::string>();
         sessions = sessionz;
     }
-    return (sessions.front());
+    std::string session = sessions.front();
+    sessions.pop();
+    return (session);
 }
 
 
@@ -161,6 +166,37 @@ std::string random_proxy() {
     std::uniform_int_distribution<> dis(0, proxies.size() - 1);
     int index = dis(gen);
     return proxies[index];
+}
+
+
+std::string mask_pass() {
+    char password[50];
+    int i = 0;
+    char ch;
+
+    while (true) {
+        ch = _getch();
+
+        if (ch == 13) {
+            std::cout << std::endl;
+            break;
+        }
+        else if (ch == 8) { 
+            if (i > 0) {
+                i--;
+                std::cout << "\b \b";
+            }
+        }
+        else {
+            password[i] = ch;
+            i++;
+            std::cout << "*";
+        }
+    }
+
+    password[i] = '\0';
+
+    return std::string(password);
 }
 
 
