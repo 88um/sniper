@@ -113,7 +113,9 @@ void Insta::claimUser(const std::string& username) {
         this->claimed = true;
         this->target = username;
     }
-    
+    else {
+        //this->lastResponse().print();
+    }
    
 }
 
@@ -176,7 +178,9 @@ void Insta::handleErrors() {
         throw LoginException("[!] You are rate-limited from logging in! Please login by session or enable proxies...");
     }
     else if (this->last_response.status_code == 403 || pos != std::string::npos) {
-        this->removeSelf();
+        if (this->is_logged_in) {
+            std::cout << "[!] " + this->username + "has been logged out. \n";
+        }
     }
 
 }
