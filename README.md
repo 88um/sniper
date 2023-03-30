@@ -32,6 +32,21 @@
 
 --------------------------------------
 
+
+### Dependencies 
+
+- Libcurl
+- Nlohmann::json
+
+### Installing/Building:
+- Install c++ through <a href="https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170"> Visual Studio</a>
+- Install vcpkg <a href="https://vcpkg.io/en/getting-started.html">here</a>
+- Run `vcpkg install curl:x64-windows` in the vcpkg directory on your computer
+- Then run `vcpkg install nlohmann-json:x64-windows`
+- Open a new VS C++ Console project and add the relevant files from the repo
+
+--------------------------------------
+
 ### Please note
 
  - This script was made for educational purposes, I am not responsible for your actions using this script. 
