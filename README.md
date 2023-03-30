@@ -25,7 +25,7 @@
 2.  Open the `Exe` folder
 3.  Put your proxies inside `proxies.txt`. Put your sessions inside `sessions.txt`. Put your username targets inside `users.txt`.
 4.  Edit your config.json file for discord webhook updates.
-4.  Run `main.exe` 
+4.  Run `slime_claimer.exe` 
 5.  Choose wether to use swapper or claimer
 6.  Enter threads amount
 7. Enjoy!
