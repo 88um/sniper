@@ -21,7 +21,7 @@ public:
 	void setSession(const std::string& session);
 	bool login(const std::string& username, const std::string& password);
 	bool sendRequest(const std::string& url, const std::string& data = "");
-	Insta(std::string session) { this->session = session; this->requests.cookies["sessionid"] = session; this->requests.cookies["ds_user_id"] = this->userId();}
+	Insta(std::string session) { this->getData(); this->session = session; this->requests.cookies["sessionid"] = session; this->requests.cookies["ds_user_id"] = this->userId();}
 	Insta() {}
 	
 	
