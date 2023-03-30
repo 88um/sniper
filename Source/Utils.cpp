@@ -81,7 +81,6 @@ void track_requests() {
 std::string get_user() {
     std::lock_guard<std::mutex> lockGuard(users_lock);
     if (users.empty()) {
-        std::cout << "empty";
         std::queue<std::string> userz;
         userz = queue_file("users.txt");
         users = std::queue<std::string>();
