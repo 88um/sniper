@@ -113,11 +113,7 @@ void Insta::claimUser(const std::string& username) {
         this->claimed = true;
         this->target = username;
     }
-    else {
-        for (const auto& pair : this->headers()) {
-            std::cout<< pair.first + ": " + pair.second + "; \n";
-        }
-    }
+    
    
 }
 
