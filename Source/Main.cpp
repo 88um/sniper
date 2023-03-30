@@ -49,6 +49,7 @@ void claim() {
                 std::thread t(successMessage, target);
                 t.detach();
                 ig.removeSelf();
+                infomap.erase(session);
                 break;
 
             }
